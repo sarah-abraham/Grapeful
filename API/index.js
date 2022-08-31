@@ -1,3 +1,4 @@
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -8,7 +9,7 @@ const swaggerUi = require("swagger-ui-express"),
 
 mongoose.Promise = global.Promise;
 mongoose
-  .connect(MONGO_DB_CONFIG, {
+  .connect("mongodb://localhost/api-docs", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

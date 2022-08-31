@@ -88,3 +88,12 @@ async function deleteCategory(params, callback) {
       return callback(error);
     });
 }
+
+
+module.exports = {
+  createCategory,
+  getCategories,
+  getCategoryById,
+  updateCategory,
+  deleteCategory
+};
