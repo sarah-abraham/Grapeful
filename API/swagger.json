@@ -93,7 +93,7 @@
           }
         }
       },
-      "/api/category/{id}": {
+      "/api/Category/{id}": {
         "parameters": [
           {
             "name": "id",
