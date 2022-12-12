@@ -30,7 +30,7 @@ class SplashScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 //pushreplacednamed so it cannot go back to splash screen
-                Navigator.pushReplacementNamed(context, "homePage");
+                Navigator.pushReplacementNamed(context, "/auth-screen");
               },
               //for animation on container
               child: Ink(

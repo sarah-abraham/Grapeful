@@ -8,7 +8,7 @@ class ItemsWidget extends StatelessWidget {
     return Column(
       children: [
         Padding(
-            padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+            padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -106,20 +106,20 @@ class ItemsWidget extends StatelessWidget {
                                 color: Color(0xFF00A368),
                               ),
                             ),
-                            InkWell(
-                              onTap: () {},
-                              child: Container(
-                                padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF00A368),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Icon(
-                                  Icons.add_shopping_cart,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
+                            // InkWell(
+                            //   onTap: () {},
+                            //   child: Container(
+                            //     padding: EdgeInsets.all(8),
+                            //     decoration: BoxDecoration(
+                            //       color: Color(0xFF00A368),
+                            //       borderRadius: BorderRadius.circular(10),
+                            //     ),
+                            //     child: Icon(
+                            //       Icons.add_shopping_cart,
+                            //       color: Colors.white,
+                            //     ),
+                            //   ),
+                            // ),
                           ]),
                     ),
                   ],

@@ -8,8 +8,13 @@ import 'package:flutter/src/material/icons.dart';
 import 'package:grapeful/CartPage.dart';
 import 'package:grapeful/ItemsWidget.dart';
 import 'package:grapeful/PopularItemsWidget.dart';
-
 import 'package:grapeful/CategoriesWidget.dart';
+
+import 'package:image_picker/image_picker.dart';
+import 'package:grapeful/recognization_page.dart';
+import 'package:grapeful/image_cropper_page.dart';
+import 'package:grapeful/image_picker_class.dart';
+import 'package:grapeful/modal_dialog.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -139,6 +144,48 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Colors.greenAccent,
+        onPressed: () {
+          imagePickerModal(context, onCameraTap: () {
+            pickImage(source: ImageSource.camera).then((value) {
+              if (value != '') {
+                imageCropperView(value, context).then((value) {
+                  if (value != '') {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (_) => RecognizePage(
+                          path: value,
+                        ),
+                      ),
+                    );
+                  }
+                });
+              }
+            });
+          }, onGalleryTap: () {
+            pickImage(source: ImageSource.gallery).then((value) {
+              if (value != '') {
+                imageCropperView(value, context).then((value) {
+                  if (value != '') {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (_) => RecognizePage(
+                          path: value,
+                        ),
+                      ),
+                    );
+                  }
+                });
+              }
+            });
+          });
+        },
+        tooltip: 'Increment',
+        label: const Text("Scan photo"),
       ),
     );
   }

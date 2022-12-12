@@ -51,7 +51,7 @@ class HomePagePosts extends StatelessWidget {
                             child: Image.asset(
                               "images/$i.png",
                               fit: BoxFit.contain,
-                              height: 130,
+                              height: 80,
                               width: 120,
                             )),
                         SizedBox(height: 15),
@@ -83,7 +83,7 @@ class HomePagePosts extends StatelessWidget {
                                     Icon(
                                       Icons.favorite_border,
                                       color: Color(0xFFFFB608),
-                                      size: 28,
+                                      size: 12,
                                     )
                                   ],
                                 )
