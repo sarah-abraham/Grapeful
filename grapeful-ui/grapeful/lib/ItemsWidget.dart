@@ -99,7 +99,7 @@ class ItemsWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "\$20",
+                              "Rs. 20",
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,

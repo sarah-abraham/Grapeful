@@ -31,7 +31,7 @@ class HomePagePosts extends StatelessWidget {
               mainAxisSpacing: 15,
               shrinkWrap: true,
               children: [
-                for (int i = 1; i < 9; i++)
+                for (int i = 11; i < 17; i++)
                   Container(
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(

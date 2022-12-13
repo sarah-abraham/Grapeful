@@ -42,6 +42,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) => generateRoute(settings),
       routes: {
         "/": (context) => SplashScreen(),
         "/auth-screen": (context) => AuthScreen(),

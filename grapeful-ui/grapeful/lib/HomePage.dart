@@ -17,6 +17,9 @@ import 'package:grapeful/image_picker_class.dart';
 import 'package:grapeful/modal_dialog.dart';
 
 class HomePage extends StatelessWidget {
+  static const String routeName = '/HomePage';
+
+  const HomePage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
