@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\ivand\\Documents\\GitHub\\Grapeful\\grapeful-ui\\grapeful\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-h720dp-v13\\values-h720dp-v13.xml",
+            "outputFile": "C:\\grapeful\\Grapeful\\grapeful-ui\\grapeful\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-h720dp-v13\\values-h720dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ivand\\.gradle\\caches\\transforms-3\\5bb5c542051ad7d41a6ce30144df9ca0\\transformed\\appcompat-1.3.0\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
+                    "source": "C:\\Users\\Sarah\\.gradle\\caches\\transforms-3\\5bb5c542051ad7d41a6ce30144df9ca0\\transformed\\appcompat-1.3.0\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
