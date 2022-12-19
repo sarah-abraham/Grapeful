@@ -1,6 +1,6 @@
-# grapeful
+# Grapeful
 
-A new Flutter project.
+Grapeful is a grocery app built using flutter.
 
 ## Getting Started
 
