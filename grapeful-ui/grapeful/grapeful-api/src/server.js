@@ -1,6 +1,6 @@
 const express = require('express'); //express package is required and stored in const express
 const app = express(); // we build the app using the express package
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); //for mongodb
 const bodyParser= require('body-parser');
 const fileUpload = require('express-upload');
 
