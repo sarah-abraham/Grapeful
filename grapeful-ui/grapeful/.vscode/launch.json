@@ -9,7 +9,7 @@
                 "name": "Flutter",
                 "request": "launch",
                 "type": "dart", 
-                "program": "lib/pages/main.dart"
+                "program": "lib/main.dart"
               
         },
 

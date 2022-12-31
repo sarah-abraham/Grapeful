@@ -8,8 +8,8 @@ import 'package:flutter/src/material/icons.dart';
 import 'package:grapeful/CartPage.dart';
 import 'package:grapeful/ItemsWidget.dart';
 import 'package:grapeful/PopularItemsWidget.dart';
-import 'package:grapeful/CategoriesWidget.dart';
-
+import 'package:grapeful/CategoriesWidget2.dart';
+import 'package:grapeful/CategoryProductWidget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:grapeful/recognization_page.dart';
 import 'package:grapeful/image_cropper_page.dart';

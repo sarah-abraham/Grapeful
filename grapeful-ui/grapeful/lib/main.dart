@@ -1,6 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:grapeful/CartItemSamples.dart';
 import 'package:grapeful/CartPage.dart';
+import 'package:grapeful/CategoryProductWidget.dart';
 import 'package:grapeful/ItemPage.dart';
 import 'package:grapeful/SplashScreen.dart';
 import 'package:grapeful/HomePage.dart';
@@ -24,7 +27,7 @@ void main() {
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
-
+  //root widget of application
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -47,8 +50,13 @@ class _MyAppState extends State<MyApp> {
         "/": (context) => SplashScreen(),
         "/auth-screen": (context) => AuthScreen(),
         "homePage": (context) => HomePage(),
-        "itemPage": (context) => ItemPage(),
-        "cartPage": (context) => CartPage()
+        "itemPage": (context) => ItemPage(
+              index: 0,
+            ),
+        "cartPage": (context) => CartPage(),
+        "categoryDetailsPage": (context) => CategoryProductWidget(
+              index: 0,
+            )
       },
     );
   }
