@@ -57,8 +57,7 @@ class ItemsWidget extends StatelessWidget {
                           mainAxisSpacing: 10,
                           childAspectRatio: 0.8,
                         ),
-                        itemCount:
-                            snapshot.data.length, //list data inside snapshot
+                        itemCount: 8, //list data inside snapshot
                         itemBuilder: (BuildContext context, int index) {
                           // print("${snapshot.data[index].title}");
                           return InkWell(
@@ -154,7 +153,9 @@ class ItemsWidget extends StatelessWidget {
                           // return Text("Error while calling getData()");
                         });
                   }
-                  return CircularProgressIndicator();
+                  return Text(
+                      "Error while calling getData() ${snapshot.error}");
+                  ;
                 }),
             // ))
           ],
@@ -170,8 +171,9 @@ Future<List<Datum>> gettingData() async {
   if (response.statusCode == 200) {
     // ignore: avoid_print
     print("Data Found");
+    print(response.body);
     ProductClass dataModel = productClassFromMap(response.body);
-    //print(dataModel.support.url);
+    print(dataModel.data);
     List<Datum> arrData = dataModel.data;
     print(arrData);
     //print(arrData[0].name); //fetching data from json for testing

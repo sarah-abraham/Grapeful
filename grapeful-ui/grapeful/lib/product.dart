@@ -30,7 +30,7 @@ class Datum {
     required this.id,
     required this.productid,
     required this.title,
-    // required this.category,
+    required this.category,
     required this.description,
     required this.quantity,
     required this.price,
@@ -42,7 +42,7 @@ class Datum {
   String id;
   String productid;
   String title;
-  // Id category;
+  String category;
   String description;
   List<String> quantity;
   int price;
@@ -54,7 +54,7 @@ class Datum {
         id: json["_id"],
         productid: json["productid"],
         title: json["title"],
-        // category: Id.fromMap(json["category"]),
+        category: json["category"],
         description: json["description"],
         quantity: List<String>.from(json["quantity"].map((x) => x)),
         price: json["price"],
@@ -67,7 +67,7 @@ class Datum {
         "_id": id,
         "productid": productid,
         "title": title,
-        // "category": category.toMap(),
+        "category": category,
         "description": description,
         "quantity": List<dynamic>.from(quantity.map((x) => x)),
         "price": price,

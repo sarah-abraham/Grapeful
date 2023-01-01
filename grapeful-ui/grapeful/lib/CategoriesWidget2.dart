@@ -95,7 +95,7 @@ class CategoriesWidget extends StatelessWidget {
   }
 }
 
-Future<List<Datum>> gettingCategoryData() async {
+Future<List<CData>> gettingCategoryData() async {
   var url = "https://grapeful-api.onrender.com/src/category/";
   var response = await http.get(Uri.parse(url));
   if (response.statusCode == 200) {
@@ -103,7 +103,7 @@ Future<List<Datum>> gettingCategoryData() async {
     print("Data Found");
     CategoryClass dataModel = categoryClassFromMap(response.body);
     //print(dataModel.support.url);
-    List<Datum> arrData = dataModel.data;
+    List<CData> arrData = dataModel.data;
     print(arrData);
     //print(arrData[0].name); //fetching data from json for testing
     return arrData;

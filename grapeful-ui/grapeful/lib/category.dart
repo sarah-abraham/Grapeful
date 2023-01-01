@@ -14,10 +14,10 @@ class CategoryClass {
     required this.data,
   });
 
-  List<Datum> data;
+  List<CData> data;
 
   factory CategoryClass.fromMap(Map<String, dynamic> json) => CategoryClass(
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromMap(x))),
+        data: List<CData>.from(json["data"].map((x) => CData.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
@@ -25,8 +25,8 @@ class CategoryClass {
       };
 }
 
-class Datum {
-  Datum({
+class CData {
+  CData({
     required this.id,
     required this.categoryid,
     required this.title,
@@ -42,7 +42,7 @@ class Datum {
   // Addedon addedon;
   // V v;
 
-  factory Datum.fromMap(Map<String, dynamic> json) => Datum(
+  factory CData.fromMap(Map<String, dynamic> json) => CData(
         id: json["_id"],
         categoryid: json["categoryid"],
         title: json["title"],

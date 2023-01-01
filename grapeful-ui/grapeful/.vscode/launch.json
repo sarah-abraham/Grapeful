@@ -9,26 +9,34 @@
                 "name": "Flutter",
                 "request": "launch",
                 "type": "dart", 
-                "program": "lib/main.dart"
+                "program": "lib/main.dart",
+                "args": [
+                    "--no-sound-null-safety"
+                ]
               
         },
 
         {
             "name": "grapeful",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+           
         },
         {
             "name": "grapeful (profile mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "profile",
+            "args": [
+                "--no-sound-null-safety"
+            ],
         },
         {
             "name": "grapeful (release mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "release",
+           
         }
     ]
 }
