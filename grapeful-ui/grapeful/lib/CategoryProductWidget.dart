@@ -4,7 +4,7 @@ import 'dart:ffi';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'CategoriesWidget2.dart';
+import 'CategoriesWidget.dart';
 import 'ItemPage.dart';
 import 'package:grapeful/category.dart';
 import 'package:grapeful/product.dart';
