@@ -2,10 +2,17 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:grapeful/cart_controller.dart';
 
 class ItemBottomBar extends StatelessWidget {
+  final String pname;
+
+  const ItemBottomBar({Key? key, required this.pname}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final cartController = Get.put(CartController());
+
     return Container(
       height: 80,
       padding: EdgeInsets.symmetric(vertical: 12, horizontal: 25),
@@ -15,7 +22,7 @@ class ItemBottomBar extends StatelessWidget {
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, "cartPage");
+              Navigator.pushNamed(context, "cartScreen");
             },
             child: Container(
                 height: 60,

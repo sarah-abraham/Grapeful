@@ -34,118 +34,117 @@ class CategoryProductWidget extends StatelessWidget {
                 body: FutureBuilder(
                     future:
                         gettingProductData(csnapshot.data[index].categoryid),
-                    builder: (BuildContext context, AsyncSnapshot psnapshot) {
-                      // print("${snapshot.data[0].title}");
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
                       // print(csnapshot.data[1].categoryid);
-                      return GridView.count(
+                      return GridView.builder(
                           padding: EdgeInsets.symmetric(
                               vertical: 20, horizontal: 10),
-                          crossAxisSpacing: 20,
-                          mainAxisSpacing: 10,
-                          crossAxisCount: 2,
-                          childAspectRatio: 0.67,
-                          shrinkWrap: true,
-                          children: [
-                            for (int i = 0; i < psnapshot.data.length; i++)
-
-                              // print("${snapshot.data[index].title}");
-                              InkWell(
-                                  onTap: () {
-                                    //NAME COMING FROM MODEL CLASS
-                                    if (kDebugMode) {
-                                      print(psnapshot.data[i].productid);
-                                    }
-                                  },
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 20),
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(20),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(0.5),
-                                            spreadRadius: 1,
-                                            blurRadius: 4,
-                                          ),
-                                        ]),
-                                    child: Column(
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        ItemPage(
-                                                          index: i,
-                                                        )));
-                                          },
-                                          child: Container(
-                                            margin: EdgeInsets.all(10),
-                                            child: psnapshot
-                                                        .data[i].images[0] ==
-                                                    null
-                                                ? Image(
-                                                    image: AssetImage(
-                                                        'images/no_image_available.png'),
-                                                  )
-                                                : Image.network(
-                                                    '${psnapshot.data[i].images[0]}'),
-                                            height: 90,
-                                            width: 90,
-                                          ),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 20,
+                            mainAxisSpacing: 10,
+                            childAspectRatio: 0.8,
+                          ),
+                          itemCount:
+                              snapshot.data.length, //list data inside snapshot
+                          itemBuilder: (BuildContext context, int index) {
+                            // print("${snapshot.data[index].title}");
+                            return InkWell(
+                                onTap: () {
+                                  //NAME COMING FROM MODEL CLASS
+                                  print(snapshot.data[index].productid);
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 10),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 1,
+                                          blurRadius: 4,
                                         ),
-                                        Padding(
-                                          padding: EdgeInsets.only(bottom: 8),
-                                          child: Container(
-                                            alignment: Alignment.centerLeft,
-                                            child: Text(
-                                              psnapshot.data[i].title,
-                                              style: TextStyle(
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.bold,
-                                                color: Color(0xFF555555),
-                                              ),
+                                      ]),
+                                  child: Column(
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ItemPage(
+                                                        pname: snapshot
+                                                            .data[index].title,
+                                                      )));
+                                        },
+                                        child: Container(
+                                          margin: EdgeInsets.all(10),
+                                          child: snapshot
+                                                      .data[index].images[0] ==
+                                                  null
+                                              ? Image(
+                                                  image: AssetImage(
+                                                      'images/no_image_available.png'),
+                                                )
+                                              : Image.network(
+                                                  '${snapshot.data[index].images[0]}'),
+                                          height: 90,
+                                          width: 90,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(bottom: 8),
+                                        child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            snapshot.data[index].title,
+                                            style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color(0xFF555555),
                                             ),
                                           ),
                                         ),
-                                        Padding(
-                                          padding: EdgeInsets.only(bottom: 10),
-                                          child: Container(
-                                            alignment: Alignment.centerLeft,
-                                            child: Text(
-                                                psnapshot.data[i].quantity[0],
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(bottom: 10),
+                                        child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                              snapshot.data[index].quantity[0],
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold,
+                                                color: Color(0xFF555555),
+                                              )),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 5),
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Rs. " +
+                                                    snapshot.data[index].price
+                                                        .toString(),
                                                 style: TextStyle(
-                                                  fontSize: 14,
+                                                  fontSize: 20,
                                                   fontWeight: FontWeight.bold,
-                                                  color: Color(0xFF555555),
-                                                )),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.symmetric(vertical: 5),
-                                          child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  "Rs. " +
-                                                      psnapshot.data[i].price
-                                                          .toString(),
-                                                  style: TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Color(0xFF00A368),
-                                                  ),
+                                                  color: Color(0xFF00A368),
                                                 ),
-                                              ]),
-                                        ),
-                                      ],
-                                    ),
-                                  ))
-                          ]);
+                                              ),
+                                            ]),
+                                      ),
+                                    ],
+                                  ),
+                                ));
+                            // return Text("Error while calling getData()");
+                          });
                     }));
           }),
       debugShowCheckedModeBanner: false,
@@ -162,7 +161,7 @@ Future<List<CData>> gettingCategoryData() async {
     CategoryClass dataModel = categoryClassFromMap(response.body);
     //print(dataModel.support.url);
     List<CData> arrData = dataModel.data;
-    print(arrData);
+    // print(arrData);
     //print(arrData[0].name); //fetching data from json for testing
     return arrData;
   } else {
@@ -182,7 +181,7 @@ Future<List<Datum>> gettingProductData(String category) async {
     ProductClass dataModel = productClassFromMap(response.body);
     //print(dataModel.support.url);
     List<Datum> arrData = dataModel.data;
-    print(arrData);
+    // print(arrData);
     //print(arrData[0].name); //fetching data from json for testing
     return arrData;
   } else {

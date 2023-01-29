@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:grapeful/CartItemSamples.dart';
 import 'package:grapeful/CartPage.dart';
+import 'package:grapeful/CartScreen.dart';
 import 'package:grapeful/CategoryProductWidget.dart';
 import 'package:grapeful/ItemPage.dart';
 import 'package:grapeful/SplashScreen.dart';
@@ -43,7 +45,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateRoute: (settings) => generateRoute(settings),
       routes: {
@@ -51,9 +53,10 @@ class _MyAppState extends State<MyApp> {
         "/auth-screen": (context) => AuthScreen(),
         "homePage": (context) => HomePage(),
         "itemPage": (context) => ItemPage(
-              index: 0,
+              pname: "None",
             ),
-        "cartPage": (context) => CartPage(),
+        // "cartPage": (context) => CartPage(),
+        "cartScreen": (context) => CartScreen(),
         "categoryDetailsPage": (context) => CategoryProductWidget(
               index: 0,
             )

@@ -1,19 +1,25 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, unused_label, sort_child_properties_last, prefer_interpolation_to_compose_strings
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, unused_label, sort_child_properties_last, prefer_interpolation_to_compose_strings, unused_import
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:grapeful/CartScreen.dart';
 import 'package:grapeful/ItemBottomBar.dart';
+import 'package:grapeful/cart_controller.dart';
 import 'package:grapeful/product.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'package:get/get.dart';
 
 class ItemPage extends StatelessWidget {
-  final int index;
-  const ItemPage({Key? key, required this.index}) : super(key: key);
+  final String pname;
+  const ItemPage({Key? key, required this.pname}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final cartController = Get.put(CartController());
     return Scaffold(
       body: FutureBuilder(
-          future: gettingData(),
+          future: gettingData(pname),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
               return Column(
@@ -64,13 +70,13 @@ class ItemPage extends StatelessWidget {
                               )),
                           Container(
                             margin: EdgeInsets.all(10),
-                            child: snapshot.data[index].images[0] == null
+                            child: snapshot.data[0].images[0] == null
                                 ? Image(
                                     image: AssetImage(
                                         'images/no_image_available.png'),
                                   )
                                 : Image.network(
-                                    '${snapshot.data[index].images[0]}'),
+                                    '${snapshot.data[0].images[0]}'),
                             height: 264,
                             width: 264,
                           ),
@@ -91,23 +97,21 @@ class ItemPage extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(snapshot.data[index].title,
+                          Text(snapshot.data[0].title,
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               )),
                           Column(
                             children: [
-                              Text(
-                                  "Rs. " +
-                                      snapshot.data[index].price.toString(),
+                              Text("Rs. " + snapshot.data[0].price.toString(),
                                   style: TextStyle(
                                     fontSize: 25,
                                     fontWeight: FontWeight.bold,
                                     color: Color.fromARGB(255, 0, 0, 0),
                                   )),
                               SizedBox(height: 5),
-                              Text(snapshot.data[index].quantity[0],
+                              Text(snapshot.data[0].quantity[0],
                                   style: TextStyle(
                                     fontSize: 16,
                                   ))
@@ -139,7 +143,7 @@ class ItemPage extends StatelessWidget {
                               )),
                           SizedBox(height: 8),
                           Text(
-                            snapshot.data[index].description,
+                            snapshot.data[0].description,
                             style: TextStyle(
                               fontSize: 16,
                             ),
@@ -147,18 +151,65 @@ class ItemPage extends StatelessWidget {
                         ],
                       )),
                   SizedBox(height: 15),
+                  Container(
+                    height: 80,
+                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 25),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                              onTap: () {
+                                Get.to(() => CartScreen());
+                              },
+                              child: Container(
+                                  height: 60,
+                                  width: 80,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF00A368),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Icon(
+                                    CupertinoIcons.cart_fill,
+                                    color: Colors.white,
+                                    size: 35,
+                                  ))),
+                          GestureDetector(
+                              onTap: () {
+                                print(snapshot.data);
+                                cartController.addProduct(snapshot.data);
+                              },
+                              child: Container(
+                                  height: 60,
+                                  width: 220,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF00A368),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Text("Buy Now",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 23,
+                                        letterSpacing: 1,
+                                      ))))
+                        ]),
+                  )
                 ],
               );
             }
             return CircularProgressIndicator();
           }),
-      bottomNavigationBar: ItemBottomBar(),
     );
   }
 }
 
-Future<List<Datum>> gettingData() async {
-  var url = "https://grapeful-api.onrender.com/src/product/";
+Future<List<Datum>> gettingData(String product) async {
+  var url = "https://grapeful-api.onrender.com/src/productTitle/" + product;
   var response = await http.get(Uri.parse(url));
   if (response.statusCode == 200) {
     // ignore: avoid_print

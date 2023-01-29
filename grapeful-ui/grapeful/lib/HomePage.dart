@@ -291,7 +291,7 @@ class CustomSearch extends SearchDelegate {
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => ItemPage(
-                                          index: index,
+                                          pname: snapshot.data[index].title,
                                         )));
                               },
                               child: Container(
@@ -421,7 +421,8 @@ class CustomSearch extends SearchDelegate {
                                         Navigator.of(context)
                                             .push(MaterialPageRoute(
                                                 builder: (context) => ItemPage(
-                                                      index: index,
+                                                      pname: snapshot
+                                                          .data[index].title,
                                                     )));
                                       },
                                       child: Container(

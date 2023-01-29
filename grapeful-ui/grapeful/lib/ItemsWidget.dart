@@ -84,7 +84,8 @@ class ItemsWidget extends StatelessWidget {
                                         Navigator.of(context)
                                             .push(MaterialPageRoute(
                                                 builder: (context) => ItemPage(
-                                                      index: index,
+                                                      pname: snapshot
+                                                          .data[index].title,
                                                     )));
                                       },
                                       child: Container(
@@ -171,11 +172,11 @@ Future<List<Datum>> gettingData() async {
   if (response.statusCode == 200) {
     // ignore: avoid_print
     print("Data Found");
-    print(response.body);
+    // print(response.body);
     ProductClass dataModel = productClassFromMap(response.body);
-    print(dataModel.data);
+    // print(dataModel.data);
     List<Datum> arrData = dataModel.data;
-    print(arrData);
+    // print(arrData);
     //print(arrData[0].name); //fetching data from json for testing
     return arrData;
   } else {
