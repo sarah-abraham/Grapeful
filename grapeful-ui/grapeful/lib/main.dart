@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grapeful/CartItemSamples.dart';
-import 'package:grapeful/CartPage.dart';
 import 'package:grapeful/CartScreen.dart';
 import 'package:grapeful/CategoryProductWidget.dart';
 import 'package:grapeful/ItemPage.dart';

@@ -1,17 +1,19 @@
 // ignore: file_names
 // ignore_for_file: depend_on_referenced_packages, implementation_imports, prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_import, unused_import, unnecessary_null_comparison, unnecessary_string_interpolations, unnecessary_brace_in_string_interps, avoid_print, prefer_interpolation_to_compose_strings
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/material/icons.dart';
-import 'package:grapeful/CartPage.dart';
+import 'package:grapeful/CartScreen.dart';
 import 'package:grapeful/HomeBottomBar.dart';
 import 'package:grapeful/ItemsWidget.dart';
 import 'package:grapeful/PopularItemsWidget.dart';
 import 'package:grapeful/CategoriesWidget.dart';
 import 'package:grapeful/CategoryProductWidget.dart';
+import 'package:grapeful/cart_controller.dart';
 import 'package:grapeful/product.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:grapeful/recognization_page.dart';
@@ -54,7 +56,8 @@ class HomePage extends StatelessWidget {
                           ]),
                       child: InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, "cartPage");
+                          final cartController = Get.put(CartController());
+                          Get.to(() => CartScreen());
                         },
                         child: Icon(
                           CupertinoIcons.cart,

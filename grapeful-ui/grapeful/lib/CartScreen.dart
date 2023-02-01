@@ -6,6 +6,8 @@ import 'package:grapeful/cart_controller.dart';
 import 'package:grapeful/cart_total.dart';
 import 'package:grapeful/product.dart';
 
+int flag = 0;
+
 class CartScreen extends StatelessWidget {
   final CartController controller = Get.find();
   CartScreen({Key? key}) : super(key: key);
@@ -17,18 +19,20 @@ class CartScreen extends StatelessWidget {
             title: Text('Shopping Cart'),
             centerTitle: true,
             backgroundColor: Color(0xFF00A368)),
-        body: Obx(() => SizedBox(
+        body: SizedBox(
             height: 600,
-            child: ListView.builder(
-              itemCount: controller.products.length,
-              itemBuilder: (BuildContext context, int index) {
-                return CartProductCard(
-                    controller: controller,
-                    product: controller.products.keys.toList()[index],
-                    quantity: controller.products.values.toList()[index],
-                    index: index);
-              },
-            ))),
+            child: Obx(() => ListView.builder(
+                  itemCount: controller.products.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return CartProductCard(
+                        controller: controller,
+                        product: controller.products.keys.toList()[index],
+                        quantity: controller.products.values.toList()[index],
+                        index: index);
+
+                    return Text("No Item in cart");
+                  },
+                ))),
         bottomNavigationBar: CartTotal());
   }
 }
@@ -49,6 +53,7 @@ class CartProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    flag = 1;
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
