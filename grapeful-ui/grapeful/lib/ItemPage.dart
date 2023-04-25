@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, unused_label, sort_child_properties_last, prefer_interpolation_to_compose_strings, unused_import
 
 import 'package:flutter/cupertino.dart';
+import 'HomePage2.dart';
 import 'package:flutter/material.dart';
 import 'package:grapeful/CartScreen.dart';
 import 'package:grapeful/ItemBottomBar.dart';
@@ -25,7 +26,7 @@ class ItemPage extends StatelessWidget {
               return Column(
                 children: [
                   Container(
-                      color: Color.fromARGB(255, 172, 242, 216),
+                      color: Color(0xFFECF87F),
                       width: double.infinity,
                       height: 390,
                       padding: EdgeInsets.symmetric(vertical: 15),
@@ -33,39 +34,22 @@ class ItemPage extends StatelessWidget {
                         children: [
                           Padding(
                               padding: EdgeInsets.symmetric(
-                                  vertical: 15, horizontal: 30),
+                                  vertical: 15, horizontal: 10),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   InkWell(
                                       onTap: () {
-                                        Navigator.pushNamed(
-                                            context, "homePage");
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    HomePage()));
                                       },
                                       child: Icon(
                                         Icons.arrow_back,
-                                        size: 28,
+                                        size: 40,
                                       )),
-                                  Container(
-                                      padding: EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color:
-                                                  Colors.grey.withOpacity(0.3),
-                                              spreadRadius: 1,
-                                              blurRadius: 5,
-                                            )
-                                          ]),
-                                      child: Icon(
-                                        Icons.favorite,
-                                        size: 30,
-                                        color: Color(0xFF00A368),
-                                      ))
                                 ],
                               )),
                           Container(
@@ -169,7 +153,7 @@ class ItemPage extends StatelessWidget {
                                   width: 80,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
-                                    color: Color(0xFF00A368),
+                                    color: Color(0xFF81B622),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Icon(
@@ -187,7 +171,7 @@ class ItemPage extends StatelessWidget {
                                   width: 220,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
-                                    color: Color(0xFF00A368),
+                                    color: Color(0xFF81B622),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Text("Buy Now",

@@ -18,7 +18,7 @@ class CartScreen extends StatelessWidget {
         appBar: AppBar(
             title: Text('Shopping Cart'),
             centerTitle: true,
-            backgroundColor: Color(0xFF00A368)),
+            backgroundColor: Color(0xFF81B622)),
         body: SizedBox(
             height: 600,
             child: Obx(() => ListView.builder(
@@ -30,7 +30,7 @@ class CartScreen extends StatelessWidget {
                         quantity: controller.products.values.toList()[index],
                         index: index);
 
-                    return Text("No Item in cart");
+                    // return Center(child: Text("No Item in cart"));
                   },
                 ))),
         bottomNavigationBar: CartTotal());

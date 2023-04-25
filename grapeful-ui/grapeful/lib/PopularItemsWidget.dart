@@ -17,15 +17,7 @@ class PopularItemsWidget extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF00A368),
-                ),
-              ),
-              Text(
-                "See All",
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black54,
+                  color: Color(0xFF116530),
                 ),
               ),
             ],

@@ -1,9 +1,15 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, depend_on_referenced_packages, sort_child_properties_last, unnecessary_brace_in_string_interps, avoid_print, duplicate_ignore, prefer_interpolation_to_compose_strings
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:grapeful/product.dart';
 import 'package:grapeful/ItemPage.dart';
 import 'package:http/http.dart' as http;
+
+Random random = new Random();
+
+int flag = 0;
 
 class ItemsWidget extends StatelessWidget {
   @override
@@ -11,30 +17,21 @@ class ItemsWidget extends StatelessWidget {
     return Column(
       children: [
         Padding(
-            padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+            padding: EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Top",
+                  "Products",
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF00A368),
-                  ),
-                ),
-                Text(
-                  "See All",
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black54,
+                    color: Color(0xFF116530),
                   ),
                 ),
               ],
             )),
         GridView.count(
-          padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
           crossAxisSpacing: 20,
           mainAxisSpacing: 10,
           physics: NeverScrollableScrollPhysics(),
@@ -50,15 +47,20 @@ class ItemsWidget extends StatelessWidget {
                     // print("${snapshot.data[0].title}");
                     return GridView.builder(
                         padding:
-                            EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 20,
                           mainAxisSpacing: 10,
                           childAspectRatio: 0.8,
                         ),
-                        itemCount: 8, //list data inside snapshot
+                        itemCount: 8,
+                        //list data inside snapshot
                         itemBuilder: (BuildContext context, int index) {
+                          // if (flag == 0) {
+                          //   index = random.nextInt(snapshot.data.length);
+                          // }
+
                           // print("${snapshot.data[index].title}");
                           return InkWell(
                               onTap: () {
@@ -151,12 +153,13 @@ class ItemsWidget extends StatelessWidget {
                                   ],
                                 ),
                               ));
-                          // return Text("Error while calling getData()");
+                          flag = 1;
                         });
+                    flag = 1;
                   }
-                  return Text(
-                      "Error while calling getData() ${snapshot.error}");
-                  ;
+
+                  return SizedBox();
+                  flag = 1;
                 }),
             // ))
           ],
@@ -178,6 +181,7 @@ Future<List<Datum>> gettingData() async {
     List<Datum> arrData = dataModel.data;
     // print(arrData);
     //print(arrData[0].name); //fetching data from json for testing
+
     return arrData;
   } else {
     print("Something went wrong");

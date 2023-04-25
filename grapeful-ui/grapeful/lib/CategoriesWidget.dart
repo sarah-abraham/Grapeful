@@ -10,7 +10,7 @@ class CategoriesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       Padding(
-        padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+        padding: EdgeInsets.only(left: 10, right: 10, bottom: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -19,15 +19,7 @@ class CategoriesWidget extends StatelessWidget {
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF00A368),
-              ),
-            ),
-            Text(
-              "See All",
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                color: Colors.black54,
+                color: Color(0xFF116530),
               ),
             ),
           ],
@@ -41,54 +33,58 @@ class CategoriesWidget extends StatelessWidget {
               FutureBuilder(
                   future: gettingCategoryData(),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    return Container(
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 1,
-                              blurRadius: 6,
-                            ),
-                          ],
-                        ),
-                        child: Row(children: [
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => CategoryProductWidget(
-                                        index: index,
-                                      )));
-                            },
-                            child: Padding(
-                              padding: EdgeInsets.all(5),
-                              child: snapshot.data[index].images[0] == null
-                                  ? Image(
-                                      image: AssetImage(
-                                          'images/no_image_available.png'),
-                                    )
-                                  : Image.network(
-                                      '${snapshot.data[index].images[0]}',
-                                      height: 50,
-                                      width: 50),
-                              // height: 50,
-                              // width: 50,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(right: 5),
-                            child: Text(snapshot.data[index].title,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                          )
-                        ]));
-                    return Text("Error while calling getData()");
+                    if (snapshot.hasData) {
+                      return InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => CategoryProductWidget(
+                                      index: index,
+                                    )));
+                          },
+                          child: Container(
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              width: 160,
+                              height: 240,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 1,
+                                    blurRadius: 6,
+                                  ),
+                                ],
+                              ),
+                              child: Column(children: [
+                                Padding(
+                                  padding: EdgeInsets.all(5),
+                                  child: snapshot.data[index].images[0] == null
+                                      ? Image(
+                                          image: AssetImage(
+                                              'images/no_image_available.png'),
+                                        )
+                                      : Image.network(
+                                          '${snapshot.data[index].images[0]}',
+                                          height: 150,
+                                          width: 150),
+                                  // height: 50,
+                                  // width: 50,
+                                ),
+                                Center(
+                                    child: Padding(
+                                  padding: EdgeInsets.only(right: 25, left: 25),
+                                  child: Text(snapshot.data[index].title,
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                ))
+                              ])));
+                    }
+
+                    return SizedBox();
                   })
           ]))
     ]);

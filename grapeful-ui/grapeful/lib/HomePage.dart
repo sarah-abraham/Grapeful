@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 50, 150, 93),
+      backgroundColor: Color(0xFF81B622),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
                     Container(
                       alignment: Alignment.centerRight,
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 50, 150, 93),
+                          color: Color(0xFF81B622),
                           borderRadius: BorderRadius.circular(10),
                           boxShadow: [
                             BoxShadow(
@@ -78,16 +78,12 @@ class HomePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Welcome",
+                      "Welcome to Grapeful",
                       style: GoogleFonts.raleway(
                         fontSize: 35,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
-                    ),
-                    Text(
-                      "What do you want to Buy?",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                   ],
                 ),
@@ -152,7 +148,7 @@ class HomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: Color(0xFF81B622),
         onPressed: () {
           imagePickerModal(context, onCameraTap: () {
             pickImage(source: ImageSource.camera).then((value) {
@@ -362,7 +358,7 @@ class CustomSearch extends SearchDelegate {
                   // return Text("Error while calling getData()");
                 });
           }
-          return Text("Error while calling getData() ${snapshot.error}");
+          return SizedBox();
           ;
         });
   }
@@ -497,8 +493,7 @@ class CustomSearch extends SearchDelegate {
                           // return Text("Error while calling getData()");
                         });
                   }
-                  return Text(
-                      "Error while calling getData() ${snapshot.error}");
+                  return SizedBox();
                   ;
                 }),
             // ))

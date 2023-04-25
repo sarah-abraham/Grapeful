@@ -4,11 +4,13 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:grapeful/CartScreen.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:grapeful/product.dart';
 
+import 'HomePage2.dart';
 import 'cart_controller.dart';
 
 class RecognizePage extends StatefulWidget {
@@ -35,21 +37,21 @@ class _RecognizePageState extends State<RecognizePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: const Text("recognized page")),
-        body: _isBusy == true
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : Container(
-                padding: const EdgeInsets.all(20),
-                child: TextFormField(
-                  maxLines: MediaQuery.of(context).size.height.toInt(),
-                  controller: controller,
-                  decoration:
-                      const InputDecoration(hintText: "Text goes here..."),
-                ),
-              ));
+    return Scaffold(body: CartScreen());
+    // appBar: AppBar(title: const Text("recognized page")),
+    // body: _isBusy == true
+    //     ? const Center(
+    //         child: CircularProgressIndicator(),
+    //       )
+    //     : Container(
+    //         padding: const EdgeInsets.all(20),
+    //         child: TextFormField(
+    //           maxLines: MediaQuery.of(context).size.height.toInt(),
+    //           controller: controller,
+    //           decoration:
+    //               const InputDecoration(hintText: "Text goes here..."),
+    //         ),
+    //       ));
   }
 
   void processImage(InputImage image) async {
@@ -71,22 +73,11 @@ class _RecognizePageState extends State<RecognizePage> {
     var items = ls.convert(itemstext);
 
     for (int i = 0; i <= items.length; i++) {
-      print(items.length);
-      gettingData(items[i]);
+      print(items[i]);
+      allData(items[i]);
     }
-    print(items);
 
     controller.text = recognizedText.text;
-
-    Future<List<Datum>> snapshot = gettingData(recognizedText.text);
-    print(snapshot);
-    // cartController.addProduct(snapshot.data);
-    // FutureBuilder(
-    //     future: gettingData(recognizedText.text),
-    //     builder: (BuildContext context, AsyncSnapshot snapshot) {
-    //       cartController.addProduct(snapshot);
-    //       return Text("Error");
-    //     });
 
     ///End busy state
     setState(() {
@@ -95,21 +86,50 @@ class _RecognizePageState extends State<RecognizePage> {
   }
 }
 
-Future<List<Datum>> gettingData(String product) async {
-  var url = "https://grapeful-api.onrender.com/src/productTitle/" + product;
-  var response = await http.get(Uri.parse(url));
+Future<List<Datum>> allData(String value) async {
   final cartController = Get.put(CartController());
+  List<Datum> arrData1 = [];
+  List<String> productTitleAdded = [];
+  var url = "https://grapeful-api.onrender.com/src/productTitle/";
+  var response = await http.get(Uri.parse(url));
+  List<int> found_index = [];
   if (response.statusCode == 200) {
     // ignore: avoid_print
-    print("Data Found");
+
     ProductClass dataModel = productClassFromMap(response.body);
-    //print(dataModel.support.url);
+
     List<Datum> arrData = dataModel.data;
-    print(arrData);
-    cartController.addProduct(arrData);
-    //print(arrData[0].name); //fetching data from json for testing
-    return arrData;
-  } else {
-    throw Exception("Failed to Fetch");
+    for (int i = 0; i < arrData.length; i++) {
+      String productTitle = arrData[i].title;
+
+      if (productTitle.toLowerCase().contains(value.toLowerCase())) {
+        //add productTitles to array
+        productTitleAdded.add(productTitle);
+        print("-------------------------------------------------");
+        print("Hey!!!!! I FOUND A MATCH");
+        print(productTitle);
+        print("-------------------------------------------------");
+        found_index.add(i);
+      }
+    }
   }
+  for (int j = 0; j < productTitleAdded.length; j++) {
+    var product_url = "https://grapeful-api.onrender.com/src/productTitle/" +
+        productTitleAdded[j];
+    var response = await http.get(Uri.parse(product_url));
+    if (response.statusCode == 200) {
+      // ignore: avoid_print
+      print("Data Found");
+      ProductClass dataModel = productClassFromMap(response.body);
+
+      List<Datum> arrData1 = dataModel.data;
+      print(arrData1);
+      //print(arrData[0].name); //fetching data from json for testing
+      cartController.addProduct(arrData1);
+      return arrData1;
+    } else {
+      throw Exception("Failed to Fetch");
+    }
+  }
+  return arrData1;
 }

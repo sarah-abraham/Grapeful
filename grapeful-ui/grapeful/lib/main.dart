@@ -7,7 +7,7 @@ import 'package:grapeful/CartScreen.dart';
 import 'package:grapeful/CategoryProductWidget.dart';
 import 'package:grapeful/ItemPage.dart';
 import 'package:grapeful/SplashScreen.dart';
-import 'package:grapeful/HomePage.dart';
+import 'package:grapeful/HomePage2.dart';
 import 'package:grapeful/auth_screen.dart';
 import 'package:grapeful/auth_service.dart';
 import 'package:provider/provider.dart';
@@ -19,28 +19,18 @@ import 'package:grapeful/auth_service.dart';
 import 'package:grapeful/user_provider.dart';
 
 void main() {
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(
-      create: (context) => UserProvider(),
-    ),
-  ], child: const MyApp()));
+  runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-  //root widget of application
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
+class MyApp extends StatelessWidget {
+// class _MyAppState extends State<MyApp> {
+//   final AuthService authService = AuthService();
 
-class _MyAppState extends State<MyApp> {
-  final AuthService authService = AuthService();
-
-  @override
-  void initState() {
-    super.initState();
-    authService.getUserData(context);
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     authService.getUserData(context);
+//   }
 
   @override
   Widget build(BuildContext context) {
